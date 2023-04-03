@@ -29,19 +29,23 @@ class Products with ChangeNotifier {
           'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
     ),
     Product(
-      id: 'p4',
-      title: 'A Pan',
-      description: 'Prepare any meal you want.',
-      price: 49.99,
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
-    ),
+        id: 'p4',
+        title: 'A Pan',
+        description: 'Prepare any meal you want.',
+        price: 49.99,
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+        isFavorite: true),
   ];
   List<Product> get items {
     return [..._items];
   }
 
+  List<Product> get favoritesItem {
+    return _items.where((element) => element.isFavorite).toList();
+  }
+
   Product findById(String id) {
-    return _items.firstWhere((element) => element.id==id);
+    return _items.firstWhere((element) => element.id == id);
   }
 }
