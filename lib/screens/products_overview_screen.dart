@@ -5,6 +5,7 @@ import '../providers/product.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../providers/cart.dart';
+import '../screens/cart_screen.dart';
 
 enum FilterOptions { favorites, all }
 
@@ -50,7 +51,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             builder: ((context, cart, child) => Badge(
                 child: IconButton(
                   icon: Icon(Icons.shopping_cart),
-                  onPressed: (() {}),
+                  onPressed: (() {
+                    Navigator.of(context).pushNamed(CartScreen.routeName);
+                  }),
                 ),
                 value: cart.itemCount.toString(),
                 color: Theme.of(context).accentColor)),
