@@ -4,9 +4,10 @@ import 'package:provider/provider.dart';
 import '../providers/products.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/user_product_item.dart';
+import '../screens/edit_product_screen.dart';
 
 class UserProductScreen extends StatelessWidget {
-  static const routeName = '/user_product';
+  static const routeName = '/user-product';
   const UserProductScreen({super.key});
 
   @override
@@ -15,7 +16,13 @@ class UserProductScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(EditPoductScreen.routeName);
+              },
+              icon: const Icon(Icons.add))
+        ],
       ),
       drawer: AppDrawer(),
       body: Padding(
@@ -26,7 +33,7 @@ class UserProductScreen extends StatelessWidget {
               UserProductItem(
                   title: productsData.items[i].title,
                   imageUrl: productsData.items[i].imageUrl),
-                Divider()
+              Divider()
             ],
           ),
           itemCount: productsData.items.length,
