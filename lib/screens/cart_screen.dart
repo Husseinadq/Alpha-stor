@@ -44,7 +44,8 @@ class CartScreen extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          if (cart.totalAmount <= 0.0) {
+                          print(cart.totalAmount);
+                          if (cart.totalAmount >= 0.0) {
                             Provider.of<Orders>(context, listen: false)
                                 .addOrder(cart.items.values.toList(),
                                     cart.totalAmount);
