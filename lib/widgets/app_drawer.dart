@@ -1,6 +1,8 @@
-import 'package:alpha_stor/screens/orders_screen.dart';
+
 import 'package:flutter/material.dart';
 
+import '../screens/orders_screen.dart';
+import '../screens/user_product_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -26,6 +28,7 @@ class AppDrawer extends StatelessWidget {
        const Divider(),
         _item('Shop',const Icon(Icons.shop), '/', context),        
         _item('Orders',const Icon(Icons.payment), OrdersScreen.routeName, context),        
+        _item('Manage Products',const Icon(Icons.add), UserProductScreen.routeName, context),        
       ]),
     );
   }
