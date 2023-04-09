@@ -21,6 +21,12 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   final List<Product> loadedProduct = [];
   bool _showFavorites = false;
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
