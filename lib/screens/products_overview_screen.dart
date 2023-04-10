@@ -1,3 +1,4 @@
+import 'package:alpha_stor/providers/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,11 +21,28 @@ class ProductsOverviewScreen extends StatefulWidget {
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   final List<Product> loadedProduct = [];
   bool _showFavorites = false;
+  var _isInit = true;
+  var _isLoading = false;
 
-@override
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<Products>(context).fechAndSetProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
   }
 
   @override
@@ -68,7 +86,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(_showFavorites),
+      body:_isLoading?Center(child: CircularProgressIndicator(),): ProductsGrid(_showFavorites),
     );
   }
 }
