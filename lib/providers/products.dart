@@ -7,7 +7,7 @@ import './product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
-  /*  Product(
+    /*  Product(
       id: 'p1',
       title: 'Red Shirt',
       description: 'A red shirt - it is pretty red!',
@@ -102,14 +102,27 @@ class Products with ChangeNotifier {
     }
   }
 
-  void updateProduct(String id, Product newProduct) {
+  Future updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((element) => element.id == id);
+    final url = Uri.parse(
+        'https://alpha-store-5d896-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
+    await http.patch(url,
+        body: json.encode({
+          'title': newProduct.title,
+          'description': newProduct.description,
+          'imageUrl': newProduct.imageUrl,
+          'price': newProduct.price,
+        }));
+
     _items[prodIndex] = newProduct;
     notifyListeners();
   }
 
   void deleteProduct(String id) {
     _items.removeWhere((element) => element.id == id);
+    final url = Uri.parse(
+        'https://alpha-store-5d896-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
+    http.delete(url);
     notifyListeners();
   }
 }
