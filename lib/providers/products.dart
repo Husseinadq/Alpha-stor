@@ -102,7 +102,7 @@ class Products with ChangeNotifier {
     }
   }
 
-  Future updateProduct(String id, Product newProduct) async {
+  Future<void> updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((element) => element.id == id);
     final url = Uri.parse(
         'https://alpha-store-5d896-default-rtdb.europe-west1.firebasedatabase.app/products/$id.json');
