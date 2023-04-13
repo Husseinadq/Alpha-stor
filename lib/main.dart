@@ -1,3 +1,5 @@
+import 'package:alpha_stor/providers/auth.dart';
+import 'package:alpha_stor/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: Products()),
         ChangeNotifierProvider.value(value: Cart()),
-        ChangeNotifierProvider.value(value: Orders())
+        ChangeNotifierProvider.value(value: Orders()),
+        ChangeNotifierProvider.value(value: Auth())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.purple,
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato'),
-        home: ProductsOverviewScreen(),
+        home: AuthScreen(),
         routes: {
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
           CartScreen.routeName: (context) => CartScreen(),
